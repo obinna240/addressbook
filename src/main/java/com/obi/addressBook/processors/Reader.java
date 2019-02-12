@@ -1,12 +1,15 @@
 package com.obi.addressBook.processors;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,10 +48,16 @@ public final class Reader {
 	 */
 	public List<Person> parseAddressBookContent() throws IOException, URISyntaxException{
 		final List<String> addressBookContent = new ArrayList<String>();
+		
+		Optional<URL> url = Optional
+				.ofNullable(
+						getClass()
+							.getClassLoader()
+							.getResource(addressBookFile));
+		
+
 		try (Stream<String> bookLines = Files.lines(Paths
-				.get(getClass()
-						.getClassLoader()
-						.getResource(addressBookFile)
+				.get(url.get()
 						.toURI()))){
 			bookLines.forEachOrdered(addressBookContent::add);
 		}
