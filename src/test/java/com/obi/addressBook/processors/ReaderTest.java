@@ -1,5 +1,6 @@
 package com.obi.addressBook.processors;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.util.NoSuchElementException;
@@ -31,5 +32,11 @@ public class ReaderTest {
 	public void throwsNoSuchElementExceptionForNonExistentAddressBook() throws IOException, URISyntaxException {
 		Reader testReader = new Reader("NonExistentBook");
 		testReader.parseAddressBookContent();
+	}
+	
+	@Test
+	public void returnsAddressBookContentSizeAs5() throws IOException, URISyntaxException {
+		Reader testReader = new Reader("AddressBook");
+		assertEquals(5, testReader.parseAddressBookContent().size());
 	}
 }
