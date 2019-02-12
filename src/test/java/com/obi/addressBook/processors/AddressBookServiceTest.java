@@ -24,4 +24,19 @@ public class AddressBookServiceTest {
 		//run method to count males
 		//perform assertion
 	}
+	
+	@Test
+	public void returnsAListContainingTheOldestPeopleInAddressBook() {
+		//create helper class to read addresses from addressbook
+		//run method to count males
+		//perform assertion
+	}
+	
+	@Test
+	public void returns0ForAgeDifferenceWherePersonAandBHaveSameDOB() {
+		//create helper class to read addresses from addressbook
+		//run method to count males
+		//perform assertion
+	}
+
 }
