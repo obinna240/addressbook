@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,10 +53,17 @@ public class AddressBookServiceTest {
 	}
 	
 	@Test
-	public void returns0ForAgeDifferenceWherePersonAandBHaveSameDOB() {
-		//create helper class to read addresses from addressbook
-		//run method to count males
-		//perform assertion
+	public void returnsAgeDifferenceForSarahAndWesAs2229Days() throws IOException, URISyntaxException {
+		Reader reader = new Reader("AddressBook");
+		AddressBookService addressBookService = new AddressBookService(reader);
+		assertEquals(new Long(2229), new Long(addressBookService.getAgeDifference("Sarah", "Wes")));
+	}
+	
+	@Test
+	public void returnsAgeDifferenceForJimAndWesAs0Days() throws IOException, URISyntaxException {
+		Reader reader = new Reader("AddressBook");
+		AddressBookService addressBookService = new AddressBookService(reader);
+		assertEquals(new Long(0), new Long(addressBookService.getAgeDifference("Jim", "Wes")));
 	}
 
 }
