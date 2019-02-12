@@ -1,11 +1,13 @@
 package com.obi.addressBook.processors;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import java.util.NoSuchElementException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 
 /**
@@ -14,11 +16,13 @@ import org.junit.Test;
  *
  */
 public class ReaderTest {
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 	
-	@Test
-	public void returnsEmptyListWhenItReadsEmptyAddressBook() throws IOException, URISyntaxException {
+	@Test(expected = NoSuchElementException.class) 
+	public void returnsExceptionWithMessageNoValuePresent() throws IOException, URISyntaxException {
 		Reader testReader = new Reader("EmptyAddressBook");
-		assertTrue(testReader.parseAddressBookContent().isEmpty());
+		testReader.parseAddressBookContent();
 	}
 	
 	@Test(expected = NoSuchElementException.class) 
