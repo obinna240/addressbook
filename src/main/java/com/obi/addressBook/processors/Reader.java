@@ -37,5 +37,26 @@ public final class Reader {
 //		return addressBookReader;
 //	}
 	
+	/**
+	 * This method parses the addressbook and returns its content as a List of Persons
+	 * @return
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 */
+	public List<Person> parseAddressBookContent() throws IOException, URISyntaxException{
+		final List<String> addressBookContent = new ArrayList<String>();
+		try (Stream<String> bookLines = Files.lines(Paths
+				.get(getClass()
+						.getClassLoader()
+						.getResource(addressBookFile)
+						.toURI()))){
+			bookLines.forEachOrdered(addressBookContent::add);
+		}
+		return addressBookContent.stream()
+				.filter(line -> line != null && line.length() > 0)
+				.map(line -> line.split(","))
+				.map(line -> new Person(line[0].trim(), line[1].trim(), LocalDate.parse(line[2].trim(), Utils.formatInputDates())))
+				.collect(Collectors.toList());
+	}
 
 }
