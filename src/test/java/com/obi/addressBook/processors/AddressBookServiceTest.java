@@ -24,7 +24,7 @@ public class AddressBookServiceTest {
 	}
 	
 	@Test
-	public void returns6ForCountOfMalesInAddressBookWhereGenderIsUppercase() throws IOException, URISyntaxException {
+	public void returns4ForCountOfMalesInAddressBookWhereGenderIsUppercase() throws IOException, URISyntaxException {
 		Reader reader = new Reader("AddressBook");
 		AddressBookService addressBookService = new AddressBookService(reader);
 		assertEquals(new Long(4), new Long(addressBookService.getCountOfGenders("MALE")));
