@@ -74,7 +74,7 @@ public final class AddressBookService {
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 */
-	public long ageDifference(final String nameOfirstPerson, final String nameOfSecondPerson) throws IOException, URISyntaxException {
+	public long getAgeDifference(final String nameOfirstPerson, final String nameOfSecondPerson) throws IOException, URISyntaxException {
 		List<LocalDate> dates = 
 		getPeopleInAddressBook()
 			.stream()
