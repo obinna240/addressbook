@@ -18,8 +18,8 @@ import org.junit.rules.ExpectedException;
  */
 public class ReaderTest {
 	
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
+//	@Rule
+//	public ExpectedException thrown = ExpectedException.none();
 	
 	@Test
 	public void returnsEmptyListWhenItReadsEmptyAddressBook() throws IOException, URISyntaxException {
