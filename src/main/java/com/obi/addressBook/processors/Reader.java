@@ -1,7 +1,6 @@
 package com.obi.addressBook.processors;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -13,7 +12,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.obi.addressBook.interfaces.AddressBookReader;
 import com.obi.addressBook.model.*;
 import com.obi.addressBook.util.Utils;
 
@@ -24,7 +22,6 @@ import com.obi.addressBook.util.Utils;
  */
 public final class Reader {
 	private final String addressBookFile;
-	// private AddressBookReader addressBookReader;
 	
 	public Reader(String addressBookFile) {
 		this.addressBookFile = addressBookFile;
@@ -35,11 +32,7 @@ public final class Reader {
 	public String getAddressBookFile() {
 		return addressBookFile;
 	}
-//	
-//	public AddressBookReader getAdressBookReader() {
-//		return addressBookReader;
-//	}
-	
+
 	/**
 	 * This method parses the addressbook and returns its content as a List of Persons
 	 * @return
