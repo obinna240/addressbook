@@ -1,14 +1,28 @@
 package com.obi.addressBook.processors;
 
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class AddressBookServiceTest {
 
 	@Test
-	public void returns6ForCountOfMalesInAddressBook() {
-		//create helper class to read addresses
-		//run method to count males
-		//perform assertion
+	public void returns4ForCountOfMalesInAddressBook() throws IOException, URISyntaxException {
+		Reader reader = new Reader("AddressBook");
+		AddressBookService addressBookService = new AddressBookService(reader);
+		assertEquals(new Long(4), new Long(addressBookService.getCountOfGenders("male")));
+
+	}
+	
+	@Test
+	public void returns6ForCountOfMalesInAddressBookWhereGenderIsUppercase() throws IOException, URISyntaxException {
+		Reader reader = new Reader("AddressBook");
+		AddressBookService addressBookService = new AddressBookService(reader);
+		assertEquals(new Long(4), new Long(addressBookService.getCountOfGenders("MALE")));
 	}
 	
 	@Test

@@ -51,7 +51,8 @@ public final class Reader {
 
 		try (Stream<String> bookLines = Files.lines(Paths
 				.get(url.get()
-						.toURI()))){
+						.toURI()))
+				.filter(line -> !line.isEmpty())){
 			bookLines.forEachOrdered(addressBookContent::add);
 		}
 		return addressBookContent.stream()
