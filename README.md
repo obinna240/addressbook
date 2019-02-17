@@ -29,6 +29,10 @@ The ```com.obi.addressBook.processors.AddressBookService``` class uses the reade
 The solution was implemented using Java 8 and Maven (Dependency management). Please note that no external libraries like Apache Commons or Guava were used. This was a decision made on purpose. In production these external libraries would be the preferred choice to make some of the processes like string manipulations easier.
 
 The main application with all the solutions can be run and found in ```com.obi.addressBook.App.java```
+To run this using maven, do:
+```
+mvn exec:java -D "exec.mainClass"="com.obi.addressBook.App"
+```
 
 ### Test coverage
 Test coverage includes tests for the classes in the ```com.obi.addressBook.processors``` package. We provide tests for ```AddressBookService``` and ```Reader```. All tests can be run by simply doing: 
