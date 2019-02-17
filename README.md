@@ -4,6 +4,24 @@
 The addressbookreader in this application reads a file containing a comma separated list of addresses in the format 'name, sex, dob'
 
 The solutions to the problem can be run from the main application class in ```com.obi.addressBook.App.java```.
+NOTE: You will need to have maven installed to run the application otherwise, I have created a maven wrapper.
+On a linux or Mac machine, you can do (while in the base dir of the project):
+
+```
+$ ./mvnw clean install
+
+```
+to install the project or
+
+```
+$ ./mvnw clean test
+
+```
+to run the tests. On windows, do
+
+```
+$ ./mvnw.cmd clean install
+```
 
 ## Design
 ### Models 
@@ -27,6 +45,7 @@ The ```com.obi.addressBook.processors.AddressBookService``` class uses the reade
 
 ### Building App
 The solution was implemented using Java 8 and Maven (Dependency management). Please note that no external libraries like Apache Commons or Guava were used. This was a decision made on purpose. In production these external libraries would be the preferred choice to make some of the processes like string manipulations easier.
+As mentioned above, to run the App this way, you should have maven installed otherwise use mvnw wrapper.
 
 The main application with all the solutions can be run and found in ```com.obi.addressBook.App.java```
 To run this using maven, do:
