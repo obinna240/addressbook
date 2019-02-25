@@ -19,7 +19,7 @@ import com.obi.addressBook.model.Person;
  */
 public final class AddressBookService {
 	
-	private Reader reader;
+	private final Reader reader;
 	
 	public AddressBookService(Reader reader) {
 		this.reader = reader;

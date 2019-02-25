@@ -2,6 +2,7 @@ package com.obi.addressBook;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.logging.Logger;
 
 import com.obi.addressBook.processors.AddressBookService;
 import com.obi.addressBook.processors.Reader;
@@ -12,6 +13,8 @@ import com.obi.addressBook.processors.Reader;
  */
 public class App 
 {
+	private static final Logger log = Logger.getLogger(App.class.getName());
+	
     public static void main(String[] args) throws IOException, URISyntaxException {
     	Reader reader = new Reader("AddressBook");
     	AddressBookService addressBookService = new AddressBookService(reader );
@@ -19,6 +22,9 @@ public class App
     	//solution to question 1: How many males are in the address book
     	System.out.println("==Getting total number of males == ");
     	System.out.println(addressBookService.getCountOfGenders("male"));
+    	log.info("==Getting total number of males == ");
+    	log.info(addressBookService.getCountOfGenders("male").toString());
+    	
     	
     	//solution to question 2: Who is the oldest person in the address book?
     	System.out.println("== Printing oldest people == ");
