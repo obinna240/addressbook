@@ -4,22 +4,15 @@ pipeline {
 			stage('clone the project'){
 				parallel {
 					stage('Compilation') {
-						steps{
+						steps {
 							echo "Performing Maven clean"
 							sh "./mvnw clean install -DskipTests"
 						}
 
 					}
-					stage('Static Analysis') {
-						stage("Checkstyle") {
+					stage('Static Analysis: checkstyle'){
+						steps {
 							sh "./mvnw checkstyle:checkstyle"
-							steps([$class: 'CheckStylePublisher',
-								   canRunOnFailed: true,
-								   defaultEncoding: '',
-								   healthy: '100',
-								   pattern: '**/target/checkstyle-result.xml',
-								   unHealthy: '90',
-								   useStableBuildAdsReference: true])
 						}
 					}
 				}
