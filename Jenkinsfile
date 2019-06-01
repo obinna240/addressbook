@@ -10,16 +10,12 @@ pipeline {
 						}
 
 					}
-					stage('Static Analysis: checkstyle'){
-						steps {
-							sh "./mvnw checkstyle:checkstyle"
-						}
-					}
 				}
 			}
 			stage('Test and deployment'){
 				steps {
-					echo 'This is my first build'
+						echo 'Preparing to run unit tests'
+						sh ./mvnw clean test
 					}
 				}
 			stage('Staging') {
