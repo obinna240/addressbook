@@ -10,17 +10,10 @@ pipeline {
 						}
 
 					}
-					stage('Static Analysis') {
-						stage("Checkstyle") {
-							sh "./mvnw checkstyle:checkstyle"
-							steps([$class: 'CheckStylePublisher',
-								   canRunOnFailed: true,
-								   defaultEncoding: '',
-								   healthy: '100',
-								   pattern: '**/target/checkstyle-result.xml',
-								   unHealthy: '90',
-								   useStableBuildAdsReference: true])
-						}
+					stage('Static Analysis- checkstyle') {
+							steps {
+								sh "./mvnw checkstyle:checkstyle"
+							}
 					}
 				}
 			}
