@@ -4,16 +4,16 @@ pipeline {
 			stage('clone the project'){
 				parallel {
 					stage('Compilation') {
-						steps{
+						steps {
 							echo "Performing Maven clean"
 							sh "./mvnw clean install -DskipTests"
 						}
 
 					}
-					stage('Static Analysis- checkstyle') {
-							steps {
-								sh "./mvnw checkstyle:checkstyle"
-							}
+					stage('Static Analysis: checkstyle'){
+						steps {
+							sh "./mvnw checkstyle:checkstyle"
+						}
 					}
 				}
 			}
