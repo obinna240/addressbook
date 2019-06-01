@@ -1,12 +1,29 @@
 pipeline {
 	agent any 
 		stages {
-			stage('one'){
+			stage('clone the project'){
+				parallel 'Compilation': {
+					sh "./mvnw clean install -DskipTests"
+
+				}, 'Static Analysis': {
+					stage("Checkstyle") {
+						sh "./mvnw checkstyle:checkstyle"
+						steps([$class: 'CheckStylePublisher',
+							canRunOnFailed: true,
+							defaultEncoding: '',
+							healthy: '100',
+							pattern: '**/target/checkstyle-result.xml',
+							unHealthy: '90',
+							useStableBuildAdsReference: true])
+					}
+				}
+			}
+			stage('Test and deployment'){
 				steps {
 					echo 'This is my first build'
 					}
 				}
-			stage('two') {
+			stage('Staging') {
 				steps {
 					input('Do you want to proceed')
 					}
@@ -44,4 +61,3 @@ pipeline {
 			}
 			
 		}
-	
