@@ -2,19 +2,25 @@ pipeline {
 	agent any 
 		stages {
 			stage('clone the project'){
-				parallel 'Compilation': {
-					sh "./mvnw clean install -DskipTests"
+				parallel {
+					stage('Compilation') {
+						steps{
+							echo "Performing Maven clean"
+							sh "./mvnw clean install -DskipTests"
+						}
 
-				}, 'Static Analysis': {
-					stage("Checkstyle") {
-						sh "./mvnw checkstyle:checkstyle"
-						steps([$class: 'CheckStylePublisher',
-							canRunOnFailed: true,
-							defaultEncoding: '',
-							healthy: '100',
-							pattern: '**/target/checkstyle-result.xml',
-							unHealthy: '90',
-							useStableBuildAdsReference: true])
+					}
+					stage('Static Analysis') {
+						stage("Checkstyle") {
+							sh "./mvnw checkstyle:checkstyle"
+							steps([$class: 'CheckStylePublisher',
+								   canRunOnFailed: true,
+								   defaultEncoding: '',
+								   healthy: '100',
+								   pattern: '**/target/checkstyle-result.xml',
+								   unHealthy: '90',
+								   useStableBuildAdsReference: true])
+						}
 					}
 				}
 			}
