@@ -10,12 +10,12 @@ pipeline {
 						}
 
 					}
+
 				}
 			}
 			stage('Test and deployment'){
 				steps {
-						echo 'Preparing to run unit tests'
-						sh ./mvnw clean test
+					sh "./mvnw clean test"
 					}
 				}
 			stage('Staging') {
